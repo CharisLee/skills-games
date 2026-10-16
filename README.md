@@ -35,52 +35,14 @@ Skills follow the [Agent Skills](https://agentskills.io) format.
 
 ## Install
 
-**Everything for Scenario.** All 71 Scenario skills, without the expert tools: the default for working through the Scenario MCP.
+**Everything for Scenario.** Every Scenario skill, without the expert tools: the default for working through the Scenario MCP.
 
 ```bash
 # Every Scenario skill, without the expert tools
-npx skills add scenario-labs/skills --skill scenario --skill scenario-inspiration --skill scenario-image --skill scenario-multi-reference --skill scenario-product-shots --skill scenario-brand-kit --skill scenario-image-editing --skill scenario-text-overlay --skill scenario-storyboards --skill scenario-game-assets --skill scenario-sprite-animation --skill scenario-side-view-game-kit --skill scenario-textures --skill scenario-skyboxes --skill scenario-3d --skill scenario-patina-retexture --skill scenario-orbit-views --skill scenario-walkable-room --skill scenario-video --skill scenario-video-editing --skill scenario-seedance-music-video --skill scenario-kinetic-music-video --skill scenario-chatgpt-pet-create --skill scenario-chatgpt-pet-update --skill scenario-seedance-storyboard --skill scenario-video-ads --skill scenario-ugc --skill scenario-fan-cam --skill scenario-audio --skill scenario-video-assembly --skill scenario-caption-studio --skill scenario-consistency --skill scenario-identity-library --skill scenario-model-training --skill scenario-asset-analysis --skill scenario-quality-gate --skill scenario-refine-loop --skill scenario-model-comparison --skill scenario-formats --skill scenario-workflows --skill scenario-workflow-authoring --skill scenario-moderation --skill scenario-report --skill scenario-team-admin --skill scenario-admin-analytics --skill scenario-gpt-image --skill scenario-mai-image --skill scenario-seedream --skill scenario-gemini-image --skill scenario-reve --skill scenario-ideogram --skill scenario-grok-imagine-image --skill scenario-luma-image --skill scenario-minimax-video --skill scenario-gemini-omni --skill scenario-grok-imagine-video --skill scenario-veo --skill scenario-seedance --skill scenario-kling --skill scenario-vidu --skill scenario-wan --skill scenario-runway --skill scenario-luma-video --skill scenario-minimax-music --skill scenario-elevenlabs --skill scenario-ace-step --skill scenario-sonilo --skill scenario-meshy --skill scenario-rodin --skill scenario-sparc3d --skill scenario-3d-worlds --skill scenario-ad-variants --skill scenario-thumbnails
+npx skills add scenario-labs/skills --skill scenario scenario-inspiration scenario-image scenario-multi-reference scenario-product-shots scenario-brand-kit scenario-image-editing scenario-text-overlay scenario-storyboards scenario-game-assets scenario-sprite-animation scenario-side-view-game-kit scenario-textures scenario-skyboxes scenario-3d scenario-patina-retexture scenario-orbit-views scenario-walkable-room scenario-video scenario-video-editing scenario-seedance-music-video scenario-kinetic-music-video scenario-chatgpt-pet-create scenario-chatgpt-pet-update scenario-seedance-storyboard scenario-video-ads scenario-ugc scenario-fan-cam scenario-audio scenario-video-assembly scenario-caption-studio scenario-consistency scenario-identity-library scenario-model-training scenario-asset-analysis scenario-quality-gate scenario-refine-loop scenario-model-comparison scenario-formats scenario-workflows scenario-workflow-authoring scenario-moderation scenario-report scenario-team-admin scenario-admin-analytics scenario-gpt-image scenario-mai-image scenario-seedream scenario-gemini-image scenario-reve scenario-ideogram scenario-grok-imagine-image scenario-luma-image scenario-minimax-video scenario-gemini-omni scenario-grok-imagine-video scenario-veo scenario-seedance scenario-kling scenario-vidu scenario-wan scenario-runway scenario-luma-video scenario-minimax-music scenario-elevenlabs scenario-ace-step scenario-sonilo scenario-meshy scenario-rodin scenario-sparc3d scenario-3d-worlds scenario-ad-variants scenario-thumbnails
 ```
 
-**By role.** [INSTALL.md](INSTALL.md) groups the skills by job, from 2D artist to producer, with the outcomes each role gets and one command per role.
-
-**By goal.** Each command installs the lead skills for one outcome plus the sibling skills they hand work to.
-
-**Game art and 3D** (22 skills). Sprites, tilesets, textures, skyboxes, 3D props, and walkable spaces in one consistent style.
-
-```bash
-npx skills add scenario-labs/skills --skill scenario --skill scenario-game-assets --skill scenario-sprite-animation --skill scenario-side-view-game-kit --skill scenario-textures --skill scenario-skyboxes --skill scenario-3d --skill scenario-image --skill scenario-patina-retexture --skill scenario-walkable-room --skill scenario-video --skill scenario-consistency --skill scenario-model-training --skill scenario-refine-loop --skill scenario-moderation --skill scenario-meshy --skill scenario-rodin --skill scenario-sparc3d --skill scenario-3d-worlds --skill scenario-gemini-image --skill scenario-audio --skill scenario-sonilo
-```
-
-**Marketing and brand visuals** (22 skills). One product shot and a brief turned into on-brand stills, ads, UGC videos, and every placement size.
-
-```bash
-npx skills add scenario-labs/skills --skill scenario --skill scenario-product-shots --skill scenario-brand-kit --skill scenario-video-ads --skill scenario-ugc --skill scenario-formats --skill scenario-inspiration --skill scenario-image --skill scenario-image-editing --skill scenario-text-overlay --skill scenario-video --skill scenario-video-editing --skill scenario-audio --skill scenario-video-assembly --skill scenario-consistency --skill scenario-asset-analysis --skill scenario-veo --skill scenario-seedance --skill scenario-kling --skill scenario-elevenlabs --skill scenario-ad-variants --skill scenario-thumbnails
-```
-
-**Video, music video, and audio** (23 skills). Video made, edited, and scored, from a single clip to a whole-song music video, with voice, music, and sound effects.
-
-```bash
-npx skills add scenario-labs/skills --skill scenario --skill scenario-video --skill scenario-video-editing --skill scenario-audio --skill scenario-video-assembly --skill scenario-image-editing --skill scenario-text-overlay --skill scenario-seedance-music-video --skill scenario-kinetic-music-video --skill scenario-minimax-video --skill scenario-gemini-omni --skill scenario-grok-imagine-video --skill scenario-veo --skill scenario-seedance --skill scenario-kling --skill scenario-vidu --skill scenario-wan --skill scenario-runway --skill scenario-luma-video --skill scenario-minimax-music --skill scenario-elevenlabs --skill scenario-ace-step --skill scenario-sonilo
-```
-
-**Consistent characters and custom models** (11 skills). One character, product, or style held across a whole set, and a model trained on your own art.
-
-```bash
-npx skills add scenario-labs/skills --skill scenario --skill scenario-consistency --skill scenario-identity-library --skill scenario-model-training --skill scenario-image-editing --skill scenario-sprite-animation --skill scenario-video --skill scenario-asset-analysis --skill scenario-quality-gate --skill scenario-seedream --skill scenario-gemini-image
-```
-
-**Images and editing** (26 skills). Images generated and edited, exact text overlays, and a sequence storyboarded.
-
-```bash
-npx skills add scenario-labs/skills --skill scenario --skill scenario-image --skill scenario-multi-reference --skill scenario-image-editing --skill scenario-text-overlay --skill scenario-storyboards --skill scenario-game-assets --skill scenario-textures --skill scenario-skyboxes --skill scenario-video --skill scenario-video-editing --skill scenario-seedance-storyboard --skill scenario-video-ads --skill scenario-video-assembly --skill scenario-consistency --skill scenario-asset-analysis --skill scenario-gpt-image --skill scenario-mai-image --skill scenario-seedream --skill scenario-gemini-image --skill scenario-reve --skill scenario-ideogram --skill scenario-grok-imagine-image --skill scenario-luma-image --skill scenario-ad-variants --skill scenario-thumbnails
-```
-
-**ChatGPT and Codex pets** (3 skills). An animated pet hatched from an idea or a photo, or an existing one fixed or restyled, delivered as a sprite sheet, a GIF, and a Codex package.
-
-```bash
-npx skills add scenario-labs/skills --skill scenario --skill scenario-chatgpt-pet-create --skill scenario-chatgpt-pet-update
-```
+**By role or goal.** [INSTALL.md](INSTALL.md) groups the skills by job, from 2D artist to producer, and by outcome, from game art to ChatGPT pets, with one command each.
 
 **Expert tools.** A family installs as one set, since its specialists import the lead skill's scripts: select its "Expert tools" group in the installer menu, or run the command in its family README ([ZBrush](skills/dcc/zbrush/README.md), [Blender](skills/dcc/blender/README.md), [Maya](skills/dcc/maya/README.md), [Unreal Engine](skills/game-engines/unreal/README.md), [Unity](skills/game-engines/unity/README.md), [Godot](skills/game-engines/godot/README.md)).
 
@@ -94,7 +56,7 @@ npx skills add scenario-labs/skills
 npx skills add scenario-labs/skills --skill scenario
 ```
 
-The menu's topic groups cannot be selected from the command line: the CLI matches `--skill` against exact skill names only, and a group flag is an open request upstream ([vercel-labs/skills#992](https://github.com/vercel-labs/skills/issues/992)). From a script or CI, run one of the commands above with `-y`, which skips every prompt.
+The menu's topic groups cannot be selected from the command line: the CLI matches `--skill` against exact skill names only, and a group flag is an open request upstream ([vercel-labs/skills#992](https://github.com/vercel-labs/skills/issues/992)). From a script or CI, run the default command above or a role command from INSTALL.md with `-y`, which skips every prompt.
 
 The Scenario skills need the Scenario MCP server connected:
 
