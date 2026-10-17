@@ -250,7 +250,7 @@ Source: Storyboarding in Blender masterclass (Xx68qcqMXS4), mostly wordless time
 | Where the edit lives           | separate edit file (Charge)                                   | scene pairs in one file (Hjalti on screen) or an Edit scene with sync (5.0+)                                  | Blender version, scene weight, hand-off                                                                                                                                  |
 | Hero drawing placement         | glass on the camera rig pivot (BouncyBrain)                   | world space on proxies (Spitfire, Renato)                                                                     | camera follows one character and never sees it side-on vs action seen from several angles                                                                                |
 | Neutral vs statement camera    | neutral start, A/B (Hjalti)                                   | statements when the mood is chosen (Dillon)                                                                   | is the mood decided? Neutral side angles on grief kill tension (Dillon)                                                                                                  |
-| Lens across a cut              | change per shot (Hjalti, Dillon)                              | no lens jump on a cut (text-image-to-blender-blockout)                                                        | human edit vs a render-to-real model's guide video                                                                                                                       |
+| Lens across a cut              | change per shot (Hjalti, Dillon)                              | no lens jump on a cut (render-to-real guide)                                                                  | human edit vs a render-to-real model's guide video                                                                                                                       |
 
 ## Additions in this skill [added]
 
@@ -264,8 +264,8 @@ Source: Storyboarding in Blender masterclass (Xx68qcqMXS4), mostly wordless time
   hero that no numeric check had flagged.
 - POV cameras just off the line on the camera side, cheated forward and up past foreground
   furniture: S6 finding.
-- Color: grays plus one pop color follows Charge and Renato; the blockout skill's saturated identity
-  palette is for video models, not for directors.
+- Color: grays plus one pop color follows Charge and Renato; the saturated identity palette of
+  render-to-real guides is for video models, not for directors.
 - Cost gates in `audit` (from the S6 blind grade, which flagged an answer that animated every shot
   continuously, lit for mood and used full Rigify rigs): camera moving inside a still shot, keys
   between block starts outside live shots, a non-Workbench engine are problems; lights are a

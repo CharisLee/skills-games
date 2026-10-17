@@ -19,11 +19,12 @@ flag the gap.
 Toolkit: [`scripts/bx_previs.py`](scripts/bx_previs.py) (tested on 5.2.1):
 `import sys; sys.path += ["<this skill>/scripts", "<scenario-blender-expert>/scripts"]; import bx_previs as P`.
 
-**Which skill.** This one: story previs and animatics judged by a director and an editor.
-**text-image-to-blender-blockout** instead when the playblast guides a render-to-real video model
-(Seedance): saturated color identities, no lens jump on a cut, eased moves, a hand-off sheet; an
-approved animatic that must become a video guide is rebuilt there. Shared: metric Z-up, roots at the
-feet, one camera per shot bound to a marker, `to_track_quat('-Z','Y')` look-at. Strokes:
+**Which skill.** This one: story previs and animatics judged by a director and an editor. Out of
+scope: a playblast that guides a render-to-real video model (Seedance). It follows other rules
+(saturated color identities, no lens jump on a cut, eased moves, a hand-off sheet) that the workflow
+and `P.audit` below do not apply or check, so do not hand a director's animatic to a video model as
+is: rebuild it to those rules outside this workflow. Shared: metric Z-up, roots at the feet, one
+camera per shot bound to a marker, `to_track_quat('-Z','Y')` look-at. Strokes:
 scenario-blender-grease-pencil. Animation after layout: scenario-blender-animation. Real rigs:
 scenario-blender-rigging.
 
@@ -113,7 +114,7 @@ scenario-blender-rigging.
 | Eye tolerance 0.15 m; drawing breaks past 70 degrees from camera               | audit thresholds                           | [added]                                               |
 | Visible height = subject height x 4 / 2 / 1.15 / 0.8 / 0.6 / 0.4 / 0.25 / 0.12 | ews, wide, full, mws, medium, mcu, cu, ecu | [added]                                               |
 | Distance = visible height x lens / sensor height (20.25 mm at 16:9)            | lens swap at equal size: d2 = d1 x f2 / f1 | [added]                                               |
-| Handheld NOISE 0.010 to 0.018 rad, 18 to 26 frame scale                        | camera rotation                            | blockout skill; peak-to-peak measured 0.66 x strength |
+| Handheld NOISE 0.010 to 0.018 rad, 18 to 26 frame scale                        | camera rotation                            | video guides; measured peak-to-peak = 0.66 x strength |
 
 ## Camera language
 
