@@ -467,6 +467,7 @@ Loomis
 Luftrausers
 Lukky
 Lulkowski
+Lumetri
 MIKKT
 MOBA
 MRGB
@@ -994,6 +995,7 @@ loras
 lufs
 luhrmann
 luma
+luts
 maketx
 mandatories
 maxon
@@ -1123,6 +1125,7 @@ rileyb
 riso
 risograph
 roas
+scipy
 scons
 scroller
 sdfgi
