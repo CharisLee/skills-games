@@ -105,6 +105,9 @@
 !moulding
 !mouldings
 !moulds
+!neighbour
+!neighbouring
+!neighbours
 !normalisable
 !normalisation
 !normalisations
@@ -1045,6 +1048,7 @@ libil
 libmonobdwgc
 libmp
 libvorbis
+libvpx
 libx264
 limboai
 lkfs
