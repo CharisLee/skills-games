@@ -9,12 +9,21 @@
 # - Python suites (test_*.py) run with stdlib unittest, under uv when the
 #   suite declares a requirements.txt and uv is installed
 # - TypeScript suites (*.test.ts) run with vitest
+# - COVERAGE=1 also measures core skills' scripts, Python through
+#   .coveragerc and TypeScript through vitest's v8 provider, and writes
+#   Cobertura reports (coverage/python.xml,
+#   coverage/vitest/cobertura-coverage.xml) plus the Python table in
+#   coverage/report.md; no threshold fails a run
 # Suites may need system tools such as ffmpeg, so this runs in CI and on
 # demand, not in the pre-commit hook.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
 fail=0
+coverage=${COVERAGE:-}
+# 7.10 added patch = subprocess, which follows the scripts suites spawn.
+COVERAGE_PY="coverage>=7.10"
+[ -z "$coverage" ] || rm -rf coverage
 
 has_tests() {
   find "$1" -type f \( -name 'test_*.py' -o -name '*.test.ts' \) 2>/dev/null |
@@ -40,6 +49,8 @@ done
 
 # Every suite needs a skill, at least one test file, and a green run.
 ran=0
+ts_dirs=()
+ts_include=()
 for dir in tests/*/; do
   [ -d "$dir" ] || continue
   name=$(basename "$dir")
@@ -62,21 +73,58 @@ for dir in tests/*/; do
     # Without uv, python3 must already have them, as CI's pip step ensures.
     python=(python3)
     req="${dir}requirements.txt"
-    if [ -f "$req" ] && command -v uv >/dev/null; then
+    with=()
+    [ ! -f "$req" ] || with+=(--with-requirements "$req")
+    [ -z "$coverage" ] || with+=(--with "$COVERAGE_PY")
+    if [ "${#with[@]}" -gt 0 ] && command -v uv >/dev/null; then
       python=(uv run --quiet --no-project --python "$(command -v python3)"
-      --with-requirements "$req" python)
+      "${with[@]}" python)
     fi
     # No -t: hyphenated skill names are not importable as packages, so each
     # suite directory is its own top level and modules load as bare names.
-    "${python[@]}" -B -m unittest discover -s "$dir" || fail=1
+    unittest=(-m unittest discover -s "$dir")
+    [ -z "$coverage" ] ||
+      unittest=(-m coverage run --rcfile=.coveragerc "${unittest[@]}")
+    "${python[@]}" -B "${unittest[@]}" || fail=1
   fi
   if find "$dir" -type f -name '*.test.ts' | grep -q .; then
     ran=1
-    echo "== ${name}: vitest =="
-    pnpm exec vitest run "$dir" || fail=1
+    skill=$(node scripts/lib/skills.mjs --dir "$name")
+    # Under coverage, core suites share one vitest run below: a run per
+    # suite would overwrite the one Cobertura report the upload takes.
+    if [ -n "$coverage" ] && grep -qx "${skill}/" <<<"$core_dirs"; then
+      ts_dirs+=("$dir")
+      ts_include+=(--coverage.include="${skill}/**")
+    else
+      echo "== ${name}: vitest =="
+      pnpm exec vitest run "$dir" || fail=1
+    fi
   fi
 done
 
 [ "$ran" -eq 1 ] || echo "No skill-script test suites to run."
+
+if [ "${#ts_dirs[@]}" -gt 0 ]; then
+  echo "== vitest with coverage: ${ts_dirs[*]} =="
+  pnpm exec vitest run "${ts_dirs[@]}" --coverage "${ts_include[@]}" \
+    --coverage.reporter=text --coverage.reporter=cobertura \
+    --coverage.reportsDirectory=coverage/vitest || fail=1
+fi
+
+if [ -n "$coverage" ] && compgen -G 'coverage/.coverage.*' >/dev/null; then
+  echo "== python coverage =="
+  report=(python3)
+  if command -v uv >/dev/null; then
+    report=(uv run --quiet --no-project --python "$(command -v python3)"
+    --with "$COVERAGE_PY" python)
+  fi
+  report+=(-m coverage)
+  "${report[@]}" combine --rcfile=.coveragerc -q &&
+    "${report[@]}" report --rcfile=.coveragerc &&
+    "${report[@]}" report --rcfile=.coveragerc --format=markdown \
+      >coverage/report.md &&
+    "${report[@]}" xml --rcfile=.coveragerc -q -o coverage/python.xml ||
+    fail=1
+fi
 
 exit $fail
