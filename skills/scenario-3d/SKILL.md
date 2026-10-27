@@ -8,7 +8,6 @@ license: MIT
 
 ## Overview
 
-Scenario runs text-to-3D, image-to-3D, and 3D-to-3D models through the same MCP loop as images.
 Generate a concept image first, then run image-to-3D: it has a larger catalog and more art direction
 than text-to-3D (`txt23d`). Per-family contracts: `scenario-meshy`, `scenario-rodin`,
 `scenario-sparc3d`. Walkable scenes and Gaussian splats: `scenario-3d-worlds`. PBR retexture of a
@@ -29,9 +28,7 @@ flag the gap.
 | Preview        | `asset_display`                                                                | Interactive GLB/FBX/VOX/OBJ viewer on MCP App hosts                                    |
 | Download       | `asset_download`                                                               | Returns a URL; save with `curl -L`                                                     |
 
-## Worked example: concept image to game-ready mesh
-
-Sequence for "make a 3D treasure chest prop".
+## Worked example: game-ready treasure chest
 
 - **Plan check.** Before step 1, run `recommend` for every later step (step 2, plus any rig or
   retexture). An entry marked `requires_plan_upgrade` fails with a 403
@@ -55,14 +52,12 @@ Sequence for "make a 3D treasure chest prop".
    `dry_run`). Those two LLM-based members alone:
    - reconstruct one object from 1 to 8 photos or renders into an editable mesh with named parts and
      per-part PBR materials;
-   - suit props and hard-surface subjects, not characters or creatures, and need those images (a
-     prompt alone returned 400 at authoring time);
+   - suit props and hard-surface subjects, not characters or creatures;
    - price by `buildEffort`: `standard`, `high` (the default), `maximum`;
    - cap the exported triangle count with `faceBudget` (the game range in step 3);
    - change a result by editing it (see Refining meshes).
-3. `model_schema_get` on the chosen model: 3D schemas vary widely (single image or multi-view
-   arrays, polycount targets, PBR toggles, topology). Target 10k to 50k triangles for this game
-   prop; never assume the default meets that budget. Use only controls the schema exposes:
+3. `model_schema_get`: inspect image inputs, polycount, PBR, and topology controls. Target 10k to
+   50k triangles for this prop; never assume defaults meet that budget. Use only exposed controls:
    - **Numeric field:** read `min` and `max`, or the description when they are absent.
    - **Enum:** read `allowed_values` and their topology and count meanings (`scenario-rodin` covers
      `qualityMeshOption`). A quad count is not a triangle count.
@@ -91,6 +86,11 @@ Sequence for "make a 3D treasure chest prop".
    same textures and triangles, smaller indices, a different file. Ask for `fbx` for a Unity project
    without a glTF importer, and keep the GLB too: at authoring time the FBX embedded only two
    images, so it may miss PBR maps.
+
+**Prompt-only build.** Both LLM-based members support `txt23d`. When the user wants no concept to
+approve, skip step 1. In step 2, `recommend` with `capability="txt23d"` and the user's words as
+`prompt`. Follow steps 3 to 5 with `images: []`; describe the object and name required parts in
+`prompt`. A chest's `lid`, `body`, and `padlock` returned as those node names.
 
 Multi-view models take several images of one subject; read the count and fields off
 `model_schema_get`. Side fields follow the subject: on the Tripo multi-view members at authoring
