@@ -82,6 +82,14 @@ npx skills add scenario-labs/skills
 npx skills add scenario-labs/skills --skill scenario
 ```
 
+**Pin a reviewed release.** The commands above fetch the latest copy of each skill from `main`. To
+install a reviewed state instead, pin both the installer and the commit, taken from a release's tag.
+Run it again with a newer commit to move.
+
+```bash
+npx skills@1.7.4 add scenario-labs/skills#<commit> --skill <name>
+```
+
 The menu's topic groups cannot be selected from the command line: the CLI matches `--skill` against
 exact skill names only, and a group flag is an open request upstream
 ([vercel-labs/skills#992](https://github.com/vercel-labs/skills/issues/992)). From a script or CI,
@@ -99,7 +107,6 @@ skill.
 
 ## Staying up to date
 
-Installs always fetch the latest copy of each skill from `main`; there is no version pinning.
 Releases are how changes become visible: every feature, fix, and documentation change merged to
 `main` lands in the next release, staged by release-please as an open release PR. Merging that PR
 tags a version, updates `CHANGELOG.md` in this repository, publishes a
@@ -111,6 +118,7 @@ tags a version, updates `CHANGELOG.md` in this repository, publishes a
   that skill's name; changes spanning several skills appear under broader scopes such as `skills`.
 - To pull the changes, run `npx skills update` where you installed, or re-run your original
   `npx skills add` command.
+- To stay on a reviewed state, pin the install (see [Install](#install)).
 
 ## Skills
 
