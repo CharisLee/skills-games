@@ -39,6 +39,7 @@
         "./skills/scenario-image-editing",
         "./skills/scenario-text-overlay",
         "./skills/scenario-storyboards",
+        "./skills/scenario-comic-creator",
         "./skills/scenario-thumbnails"
       ]
     },
@@ -65,7 +66,7 @@
     },
     {
       "name": "05.-video-and-audio",
-      "description": "Video generation, editing, and color grading, seamless motion loops, music, sound effects, voice, and speech.",
+      "description": "Video generation, editing, and color grading, kinetic-type launch films, seamless motion loops, music, sound effects, voice, and speech.",
       "source": "./",
       "strict": false,
       "skills": [
@@ -81,6 +82,7 @@
         "./skills/scenario-audio",
         "./skills/scenario-video-assembly",
         "./skills/scenario-motion-loops",
+        "./skills/scenario-kinetic-film",
         "./skills/scenario-caption-studio"
       ]
     },
